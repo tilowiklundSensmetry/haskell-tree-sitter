@@ -51,7 +51,7 @@ executable demo
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base
-    , tree-sitter
+    , tree-sitter >= 0.10.0.0
     , tree-sitter-haskell
 
 library
@@ -60,11 +60,11 @@ library
   autogen-modules:     Paths_tree_sitter_haskell
   other-modules:       Paths_tree_sitter_haskell
   build-depends:       base >= 4.12 && < 5
-                     , tree-sitter
+                     , tree-sitter >= 0.10.0.0
   Include-dirs:        vendor/tree-sitter-haskell/src
   install-includes:    tree_sitter/parser.h
   c-sources:           vendor/tree-sitter-haskell/src/parser.c
-                     , vendor/tree-sitter-haskell/src/scanner.cc
+                     , vendor/tree-sitter-haskell/src/scanner.c
   extra-libraries:     stdc++
 
 source-repository head
