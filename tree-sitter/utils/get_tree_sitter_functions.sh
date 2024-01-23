@@ -1,0 +1,1 @@
+ast-grep -p '$R $F($$$P);' -r '$R' --json -l C ../vendor/tree-sitter/lib/include/tree_sitter/api.h | jq '.[].metaVariables | { F: .single.F.text , R: .single.R.text , P : [.multi.P | .[].text | select(. != ",") ] }'

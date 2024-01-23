@@ -1,0 +1,648 @@
+{
+  "F": "ts_parser_delete",
+  "R": "void",
+  "P": [
+    "TSParser *parser"
+  ]
+}
+{
+  "F": "ts_parser_set_language",
+  "R": "bool",
+  "P": [
+    "TSParser *self",
+    "const TSLanguage *language"
+  ]
+}
+{
+  "F": "ts_parser_set_included_ranges",
+  "R": "bool",
+  "P": [
+    "TSParser *self",
+    "const TSRange *ranges",
+    "uint32_t length"
+  ]
+}
+{
+  "F": "ts_parser_reset",
+  "R": "void",
+  "P": [
+    "TSParser *self"
+  ]
+}
+{
+  "F": "ts_parser_set_timeout_micros",
+  "R": "void",
+  "P": [
+    "TSParser *self",
+    "uint64_t timeout"
+  ]
+}
+{
+  "F": "ts_parser_timeout_micros",
+  "R": "uint64_t",
+  "P": [
+    "const TSParser *self"
+  ]
+}
+{
+  "F": "ts_parser_set_cancellation_flag",
+  "R": "void",
+  "P": [
+    "TSParser *self",
+    "const size_t *flag"
+  ]
+}
+{
+  "F": "ts_parser_set_logger",
+  "R": "void",
+  "P": [
+    "TSParser *self",
+    "TSLogger logger"
+  ]
+}
+{
+  "F": "ts_parser_logger",
+  "R": "TSLogger",
+  "P": [
+    "const TSParser *self"
+  ]
+}
+{
+  "F": "ts_parser_print_dot_graphs",
+  "R": "void",
+  "P": [
+    "TSParser *self",
+    "int file"
+  ]
+}
+{
+  "F": "ts_tree_delete",
+  "R": "void",
+  "P": [
+    "TSTree *self"
+  ]
+}
+{
+  "F": "ts_tree_root_node",
+  "R": "TSNode",
+  "P": [
+    "const TSTree *self"
+  ]
+}
+{
+  "F": "ts_tree_root_node_with_offset",
+  "R": "TSNode",
+  "P": [
+    "const TSTree *self",
+    "uint32_t offset_bytes",
+    "TSPoint offset_point"
+  ]
+}
+{
+  "F": "ts_tree_edit",
+  "R": "void",
+  "P": [
+    "TSTree *self",
+    "const TSInputEdit *edit"
+  ]
+}
+{
+  "F": "ts_tree_print_dot_graph",
+  "R": "void",
+  "P": [
+    "const TSTree *",
+    "int file_descriptor"
+  ]
+}
+{
+  "F": "ts_node_symbol",
+  "R": "TSSymbol",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_start_byte",
+  "R": "uint32_t",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_start_point",
+  "R": "TSPoint",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_end_byte",
+  "R": "uint32_t",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_end_point",
+  "R": "TSPoint",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_is_null",
+  "R": "bool",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_is_named",
+  "R": "bool",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_is_missing",
+  "R": "bool",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_is_extra",
+  "R": "bool",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_has_changes",
+  "R": "bool",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_has_error",
+  "R": "bool",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_parent",
+  "R": "TSNode",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_child",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_node_child_count",
+  "R": "uint32_t",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_named_child",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_node_named_child_count",
+  "R": "uint32_t",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_child_by_field_name",
+  "R": "TSNode",
+  "P": [
+    "TSNode self",
+    "const char *field_name",
+    "uint32_t field_name_length"
+  ]
+}
+{
+  "F": "ts_node_child_by_field_id",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "TSFieldId"
+  ]
+}
+{
+  "F": "ts_node_next_sibling",
+  "R": "TSNode",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_prev_sibling",
+  "R": "TSNode",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_next_named_sibling",
+  "R": "TSNode",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_prev_named_sibling",
+  "R": "TSNode",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_node_first_child_for_byte",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_node_first_named_child_for_byte",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_node_descendant_for_byte_range",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "uint32_t",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_node_descendant_for_point_range",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "TSPoint",
+    "TSPoint"
+  ]
+}
+{
+  "F": "ts_node_named_descendant_for_byte_range",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "uint32_t",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_node_named_descendant_for_point_range",
+  "R": "TSNode",
+  "P": [
+    "TSNode",
+    "TSPoint",
+    "TSPoint"
+  ]
+}
+{
+  "F": "ts_node_edit",
+  "R": "void",
+  "P": [
+    "TSNode *",
+    "const TSInputEdit *"
+  ]
+}
+{
+  "F": "ts_node_eq",
+  "R": "bool",
+  "P": [
+    "TSNode",
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_tree_cursor_new",
+  "R": "TSTreeCursor",
+  "P": [
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_tree_cursor_delete",
+  "R": "void",
+  "P": [
+    "TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_tree_cursor_reset",
+  "R": "void",
+  "P": [
+    "TSTreeCursor *",
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_tree_cursor_current_node",
+  "R": "TSNode",
+  "P": [
+    "const TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_tree_cursor_current_field_id",
+  "R": "TSFieldId",
+  "P": [
+    "const TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_tree_cursor_goto_parent",
+  "R": "bool",
+  "P": [
+    "TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_tree_cursor_goto_next_sibling",
+  "R": "bool",
+  "P": [
+    "TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_tree_cursor_goto_first_child",
+  "R": "bool",
+  "P": [
+    "TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_tree_cursor_goto_first_child_for_byte",
+  "R": "int64_t",
+  "P": [
+    "TSTreeCursor *",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_tree_cursor_goto_first_child_for_point",
+  "R": "int64_t",
+  "P": [
+    "TSTreeCursor *",
+    "TSPoint"
+  ]
+}
+{
+  "F": "ts_tree_cursor_copy",
+  "R": "TSTreeCursor",
+  "P": [
+    "const TSTreeCursor *"
+  ]
+}
+{
+  "F": "ts_query_delete",
+  "R": "void",
+  "P": [
+    "TSQuery *"
+  ]
+}
+{
+  "F": "ts_query_pattern_count",
+  "R": "uint32_t",
+  "P": [
+    "const TSQuery *"
+  ]
+}
+{
+  "F": "ts_query_capture_count",
+  "R": "uint32_t",
+  "P": [
+    "const TSQuery *"
+  ]
+}
+{
+  "F": "ts_query_string_count",
+  "R": "uint32_t",
+  "P": [
+    "const TSQuery *"
+  ]
+}
+{
+  "F": "ts_query_start_byte_for_pattern",
+  "R": "uint32_t",
+  "P": [
+    "const TSQuery *",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_query_is_pattern_rooted",
+  "R": "bool",
+  "P": [
+    "const TSQuery *self",
+    "uint32_t pattern_index"
+  ]
+}
+{
+  "F": "ts_query_is_pattern_non_local",
+  "R": "bool",
+  "P": [
+    "const TSQuery *self",
+    "uint32_t pattern_index"
+  ]
+}
+{
+  "F": "ts_query_is_pattern_guaranteed_at_step",
+  "R": "bool",
+  "P": [
+    "const TSQuery *self",
+    "uint32_t byte_offset"
+  ]
+}
+{
+  "F": "ts_query_capture_quantifier_for_id",
+  "R": "TSQuantifier",
+  "P": [
+    "const TSQuery *",
+    "uint32_t pattern_id",
+    "uint32_t capture_id"
+  ]
+}
+{
+  "F": "ts_query_disable_capture",
+  "R": "void",
+  "P": [
+    "TSQuery *",
+    "const char *",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_query_disable_pattern",
+  "R": "void",
+  "P": [
+    "TSQuery *",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_query_cursor_delete",
+  "R": "void",
+  "P": [
+    "TSQueryCursor *"
+  ]
+}
+{
+  "F": "ts_query_cursor_exec",
+  "R": "void",
+  "P": [
+    "TSQueryCursor *",
+    "const TSQuery *",
+    "TSNode"
+  ]
+}
+{
+  "F": "ts_query_cursor_did_exceed_match_limit",
+  "R": "bool",
+  "P": [
+    "const TSQueryCursor *"
+  ]
+}
+{
+  "F": "ts_query_cursor_match_limit",
+  "R": "uint32_t",
+  "P": [
+    "const TSQueryCursor *"
+  ]
+}
+{
+  "F": "ts_query_cursor_set_match_limit",
+  "R": "void",
+  "P": [
+    "TSQueryCursor *",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_query_cursor_set_byte_range",
+  "R": "void",
+  "P": [
+    "TSQueryCursor *",
+    "uint32_t",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_query_cursor_set_point_range",
+  "R": "void",
+  "P": [
+    "TSQueryCursor *",
+    "TSPoint",
+    "TSPoint"
+  ]
+}
+{
+  "F": "ts_query_cursor_next_match",
+  "R": "bool",
+  "P": [
+    "TSQueryCursor *",
+    "TSQueryMatch *match"
+  ]
+}
+{
+  "F": "ts_query_cursor_remove_match",
+  "R": "void",
+  "P": [
+    "TSQueryCursor *",
+    "uint32_t id"
+  ]
+}
+{
+  "F": "ts_query_cursor_next_capture",
+  "R": "bool",
+  "P": [
+    "TSQueryCursor *",
+    "TSQueryMatch *match",
+    "uint32_t *capture_index"
+  ]
+}
+{
+  "F": "ts_language_symbol_count",
+  "R": "uint32_t",
+  "P": [
+    "const TSLanguage *"
+  ]
+}
+{
+  "F": "ts_language_symbol_for_name",
+  "R": "TSSymbol",
+  "P": [
+    "const TSLanguage *self",
+    "const char *string",
+    "uint32_t length",
+    "bool is_named"
+  ]
+}
+{
+  "F": "ts_language_field_count",
+  "R": "uint32_t",
+  "P": [
+    "const TSLanguage *"
+  ]
+}
+{
+  "F": "ts_language_field_id_for_name",
+  "R": "TSFieldId",
+  "P": [
+    "const TSLanguage *",
+    "const char *",
+    "uint32_t"
+  ]
+}
+{
+  "F": "ts_language_symbol_type",
+  "R": "TSSymbolType",
+  "P": [
+    "const TSLanguage *",
+    "TSSymbol"
+  ]
+}
+{
+  "F": "ts_language_version",
+  "R": "uint32_t",
+  "P": [
+    "const TSLanguage *"
+  ]
+}
+{
+  "F": "ts_set_allocator",
+  "R": "void",
+  "P": [
+    "void *(*new_malloc)(size_t)",
+    "void *(*new_calloc)(size_t, size_t)",
+    "void *(*new_realloc)(void *, size_t)",
+    "void (*new_free)(void *)"
+  ]
+}

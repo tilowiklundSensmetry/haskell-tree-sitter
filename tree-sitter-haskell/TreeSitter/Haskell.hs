@@ -1,13 +1,9 @@
 module TreeSitter.Haskell
-( tree_sitter_haskell
-, getNodeTypesPath
+( haskell
 ) where
 
-import Foreign.Ptr
-import TreeSitter.Language
-import Paths_tree_sitter_haskell
+import TreeSitter.Internal.Language
+import TreeSitter.Raw.Haskell
 
-foreign import ccall unsafe "vendor/tree-sitter-haskell/src/parser.c tree_sitter_haskell" tree_sitter_haskell :: Ptr Language
-
-getNodeTypesPath :: IO FilePath
-getNodeTypesPath = getDataFileName "vendor/tree-sitter-haskell/src/node-types.json"
+haskell :: Language
+haskell = Language tree_sitter_haskell

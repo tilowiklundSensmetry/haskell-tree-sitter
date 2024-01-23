@@ -40,7 +40,7 @@ common common
 
 flag build-examples
   description: Build tree-sitter-haskell examples.
-  default:     False
+  default:     True
 
 executable demo
   import: common
@@ -51,16 +51,17 @@ executable demo
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base
-    , tree-sitter >= 0.10.0.0
+    , tree-sitter >= 0.11.0.0
     , tree-sitter-haskell
 
 library
   import: common
   exposed-modules:     TreeSitter.Haskell
+                     , TreeSitter.Raw.Haskell
   autogen-modules:     Paths_tree_sitter_haskell
   other-modules:       Paths_tree_sitter_haskell
   build-depends:       base >= 4.12 && < 5
-                     , tree-sitter >= 0.10.0.0
+                     , tree-sitter >= 0.11.0.0
   Include-dirs:        vendor/tree-sitter-haskell/src
   install-includes:    tree_sitter/parser.h
   c-sources:           vendor/tree-sitter-haskell/src/parser.c

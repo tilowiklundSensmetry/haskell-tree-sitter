@@ -5,9 +5,9 @@ import Control.Monad.IO.Class
 import Foreign
 import Foreign.C.Types
 import Hedgehog
-import TreeSitter.Cursor
-import TreeSitter.Node
-import TreeSitter.Parser
+import TreeSitter.Raw.Cursor
+import TreeSitter.Raw.Node
+import TreeSitter.Raw.Parser
 
 tests :: IO Bool
 tests = checkSequential $$(discover)
@@ -45,7 +45,7 @@ prop_Parser_timeout = property $ do
   timeout === 1000
   liftIO (ts_parser_delete parser)
 
-foreign import ccall unsafe "src/bridge.c sizeof_tsnode" sizeof_tsnode :: CSize
-foreign import ccall unsafe "src/bridge.c sizeof_tspoint" sizeof_tspoint :: CSize
-foreign import ccall unsafe "src/bridge.c sizeof_node" sizeof_node :: CSize
-foreign import ccall unsafe "src/bridge.c sizeof_tstreecursor" sizeof_tstreecursor :: CSize
+foreign import ccall safe "src/bridge.c sizeof_tsnode" sizeof_tsnode :: CSize
+foreign import ccall safe "src/bridge.c sizeof_tspoint" sizeof_tspoint :: CSize
+foreign import ccall safe "src/bridge.c sizeof_node" sizeof_node :: CSize
+foreign import ccall safe "src/bridge.c sizeof_tstreecursor" sizeof_tstreecursor :: CSize
