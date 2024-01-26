@@ -5,16 +5,15 @@ module TreeSitter.Internal.Types(
 , Parser(..)
 , Symbol(..)
 , SymbolType(..)
-, FieldId(..)
+, Field(..)
+, TreeCursor(..)
+, InputEdit(..)
+, Point(..)
 ) where
 
 import Foreign
-import Foreign.ForeignPtr
 import TreeSitter.Raw.Tree
 import TreeSitter.Raw.Types
-import TreeSitter.Raw.Allocation
-import TreeSitter.Raw.Node
-import TreeSitter.Raw.Parser
 
 newtype Language = Language ({- Not owned by Haskell -} Ptr TSLanguage)
 newtype Node = Node (ForeignPtr TSNode)
@@ -23,4 +22,8 @@ newtype Parser = Parser (ForeignPtr TSParser)
 
 newtype Symbol = Symbol TSSymbol
 newtype SymbolType = SymbolType TSSymbolType
-newtype FieldId = FieldId TSFieldId
+newtype Field = FieldId TSFieldId
+newtype Point = Point (ForeignPtr TSPoint)
+newtype InputEdit = InputEdit (ForeignPtr TSInputEdit)
+
+newtype TreeCursor = TreeCursor (ForeignPtr TSTreeCursor)

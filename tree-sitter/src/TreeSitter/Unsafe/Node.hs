@@ -47,8 +47,6 @@ import TreeSitter.Internal.Types
 
 -- import TreeSitter.Raw.Node
 
-newtype Point = Point (ForeignPtr TSPoint)
-
 liftUnaryNodeFunctionP :: (Ptr TSNode -> Ptr TSNode -> IO a) -> Node -> IO (Maybe Node)
 liftUnaryNodeFunctionP op (Node nodeForeignPtr) = do
     outPtr <- malloc_node
@@ -115,10 +113,10 @@ nodeType node = do
     return str
 
 symbol :: Node -> IO TSSymbol
-symbol = liftUnaryNodeFunction ts_node_symbol_pr
+symbol = liftUnaryNodeFunction ts_node_symbol_p
 
 {- Moved _self argument last -}
-childByFieldId :: FieldId -> {- Call by value -} Node -> IO (Maybe Node)
+childByFieldId :: Field -> {- Call by value -} Node -> IO (Maybe Node)
 childByFieldId (FieldId fieldId) = liftUnaryNodeFunctionP (\nodePtr outPtr -> ts_node_child_by_field_id_pr nodePtr fieldId outPtr)
 
 {- Moved _self argument last -}

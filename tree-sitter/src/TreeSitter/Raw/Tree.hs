@@ -16,8 +16,8 @@ module TreeSitter.Raw.Tree
 , ts_tree_cursor_new_pr
 , ts_tree_root_node_with_offset_pr
 , ts_tree_cursor_copy_pr
-, ts_tree_cursor_current_field_id_pr
-, ts_tree_cursor_current_node_pr
+, ts_tree_cursor_current_field_id
+, ts_tree_cursor_current_node_r
 , ts_tree_root_node_pr
 , p_ts_tree_cursor_delete
 ) where
@@ -37,6 +37,7 @@ foreign import ccall safe "ts_tree_cursor_goto_parent" ts_tree_cursor_goto_paren
 foreign import ccall safe "ts_tree_delete" ts_tree_delete :: Ptr TSTree -> IO ()
 foreign import ccall safe "ts_tree_edit" ts_tree_edit :: Ptr TSTree -> Ptr TSInputEdit -> IO ()
 foreign import ccall safe "ts_tree_print_dot_graph" ts_tree_print_dot_graph :: Ptr TSTree -> Int -> IO ()
+foreign import ccall safe "ts_tree_cursor_current_field_id" ts_tree_cursor_current_field_id :: Ptr TSTreeCursor -> IO TSFieldId
 
 -- Call by value wrap
 
@@ -51,8 +52,7 @@ foreign import ccall safe "ts_tree_root_node_with_offset_pr" ts_tree_root_node_w
 -- Return by value wrap
 
 foreign import ccall safe "ts_tree_cursor_copy_pr" ts_tree_cursor_copy_pr :: Ptr TSTreeCursor -> {- Out -} Ptr TSTreeCursor -> IO ()
-foreign import ccall safe "ts_tree_cursor_current_field_id_pr" ts_tree_cursor_current_field_id_pr :: Ptr TSTreeCursor -> {- Out -} Ptr TSFieldId -> IO ()
-foreign import ccall safe "ts_tree_cursor_current_node_pr" ts_tree_cursor_current_node_pr :: Ptr TSTreeCursor -> {- Out -} Ptr TSNode -> IO ()
+foreign import ccall safe "ts_tree_cursor_current_node_r" ts_tree_cursor_current_node_r :: Ptr TSTreeCursor -> {- Out -} Ptr TSNode -> IO ()
 foreign import ccall safe "ts_tree_root_node_pr" ts_tree_root_node_pr :: Ptr TSTree -> {- Out -} Ptr TSNode -> IO ()
 
 -- Function pointers

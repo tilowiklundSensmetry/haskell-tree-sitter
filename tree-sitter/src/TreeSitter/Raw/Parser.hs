@@ -9,7 +9,7 @@ module TreeSitter.Raw.Parser
 , ts_parser_set_language
 , ts_parser_timeout_micros
 , ts_parser_set_timeout_micros
-, ts_parser_log_to_stderr
+-- , ts_parser_log_to_stderr
 , ts_parser_print_dot_graphs
 , ts_parser_reset
 , ts_parser_set_cancellation_flag
@@ -26,7 +26,7 @@ import TreeSitter.Raw.Types
 foreign import ccall safe "ts_parser_new" ts_parser_new :: IO (Ptr TSParser)
 foreign import ccall safe "ts_parser_parse_string" ts_parser_parse_string :: Ptr TSParser -> Ptr TSTree -> CString -> Int -> IO (Ptr TSTree)
 
-foreign import ccall safe "src/bridge.c ts_parser_log_to_stderr" ts_parser_log_to_stderr :: Ptr TSParser -> IO ()
+-- foreign import ccall safe "src/bridge.c ts_parser_log_to_stderr" ts_parser_log_to_stderr :: Ptr TSParser -> IO ()
 
 -- Plain
 

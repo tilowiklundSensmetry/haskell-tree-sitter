@@ -23,40 +23,40 @@ liftUnaryLanguageFunction f (Language languagePtr) = f languagePtr
 -- Plain
 
 fieldCount :: Language -> IO Word32
-fieldCount language = 
-    liftUnaryLanguageFunction (\languagePtr -> ts_language_field_count languagePtr) language
+fieldCount = 
+    liftUnaryLanguageFunction (\languagePtr -> ts_language_field_count languagePtr)
 
 symbolCount :: Language -> IO Word32
-symbolCount language = 
-    liftUnaryLanguageFunction (\languagePtr -> ts_language_symbol_count languagePtr) language
+symbolCount = 
+    liftUnaryLanguageFunction (\languagePtr -> ts_language_symbol_count languagePtr)
 
 version :: Language -> IO Word32
-version language = 
-    liftUnaryLanguageFunction (\languagePtr -> ts_language_version languagePtr) language
+version = 
+    liftUnaryLanguageFunction (\languagePtr -> ts_language_version languagePtr)
 
-fieldIdForNamePr :: Language -> String -> Word32 -> IO FieldId
-fieldIdForNamePr language str x = do
+fieldIdForNamePr :: String -> Word32 -> Language -> IO Field
+fieldIdForNamePr str x language = do
     withCString str $ \cstr ->  
         liftUnaryLanguageFunction (\languagePtr -> FieldId <$> ts_language_field_id_for_name languagePtr cstr x) language
 
-symbolForNamePr :: Language -> String -> Word32 -> Bool -> IO Symbol
-symbolForNamePr language str x y = do
+symbolForNamePr :: String -> Word32 -> Bool -> Language -> IO Symbol
+symbolForNamePr str x y language = do
     withCString str $ \cstr ->  
         liftUnaryLanguageFunction (\languagePtr -> Symbol <$> ts_language_symbol_for_name languagePtr cstr x y) language
 
-symbolName :: Language -> Symbol -> IO String
-symbolName language (Symbol sym) = do
+symbolName :: Symbol -> Language -> IO String
+symbolName (Symbol sym) language = do
     flip liftUnaryLanguageFunction language $ \languagePtr -> do
         cstr <- ts_language_symbol_name languagePtr sym
         str <- peekCString cstr
         ts_free cstr
         return str
 
-symbolForName :: Language -> String -> Word32 -> Bool -> IO Symbol
-symbolForName language str x y = do
+symbolForName :: String -> Word32 -> Bool -> Language -> IO Symbol
+symbolForName str x y language = do
     withCString str $ \cstr -> 
         liftUnaryLanguageFunction (\languagePtr -> Symbol <$> ts_language_symbol_for_name languagePtr cstr x y) language
 
-symbolType :: Language -> Symbol -> IO SymbolType
-symbolType language (Symbol sym) = 
-    liftUnaryLanguageFunction (\languagePtr -> SymbolType <$> ts_language_symbol_type languagePtr sym) language
+symbolType :: Symbol -> Language -> IO SymbolType
+symbolType (Symbol sym) = 
+    liftUnaryLanguageFunction (\languagePtr -> SymbolType <$> ts_language_symbol_type languagePtr sym)

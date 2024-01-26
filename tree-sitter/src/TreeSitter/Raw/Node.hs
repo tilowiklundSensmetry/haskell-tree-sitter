@@ -32,13 +32,11 @@ module TreeSitter.Raw.Node (
 , ts_node_prev_named_sibling_pr
 , ts_node_prev_sibling_pr
 , ts_node_start_point_pr
-, ts_node_symbol_pr
+, ts_node_symbol_p
 ) where
 
 import Foreign
 import Foreign.C
-
-import TreeSitter.Symbol
 
 import TreeSitter.Raw.Types
 
@@ -66,7 +64,7 @@ foreign import ccall safe "ts_node_named_child_count_p" ts_node_named_child_coun
 foreign import ccall safe "ts_node_start_byte_p" ts_node_start_byte_p :: {- Call by value -} Ptr TSNode -> IO Word32
 foreign import ccall safe "ts_node_string_p" ts_node_string_p :: {- Call by value -} Ptr TSNode -> IO CString
 foreign import ccall safe "ts_node_type_p" ts_node_type_p     :: {- Call by value -} Ptr TSNode -> IO CString
-foreign import ccall safe "ts_node_symbol_pr" ts_node_symbol_pr :: {- Call by value -} Ptr TSNode -> IO TSSymbol
+foreign import ccall safe "ts_node_symbol_p" ts_node_symbol_p :: {- Call by value -} Ptr TSNode -> IO TSSymbol
 
 -- Both call by value and return by value
 
