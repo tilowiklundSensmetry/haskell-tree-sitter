@@ -7,12 +7,13 @@ module TreeSitter.Unsafe.Tree (
 , cursorGotoFirstChild
 , cursorGotoNextSibling
 , cursorGotoParent
-, cursorGotoFirstChildForPointP
+, cursorGotoFirstChildForPoint
 , cursorReset
 , rootNodeWithOffset
-, cursorCurrentFieldId
+, cursorCurrentField
 , cursorCurrentNode
 , rootNode
+, cursorNew
 ) where
 
 import Foreign
@@ -24,7 +25,7 @@ import TreeSitter.Raw.Types
 import TreeSitter.Raw.Tree
 
 {- cursorDelete :: TreeCursor -> IO ()
-cursorDelete = _f ts_tree_cursor_delete -}
+cursorDelete = _f ts_tree_cursor_delete_and_free -}
 
 liftUnaryTreeCursorFunction :: (Ptr TSTreeCursor -> IO a) -> TreeCursor -> IO a
 liftUnaryTreeCursorFunction f (TreeCursor cursorForeignPtr) =
@@ -64,8 +65,8 @@ edit = _f ts_tree_edit -}
 {- printDotGraph :: Tree -> Int -> IO ()
 printDotGraph = _f ts_tree_print_dot_graph -}
 
-cursorGotoFirstChildForPointP :: {- Call by value -} Point -> TreeCursor -> IO Int64
-cursorGotoFirstChildForPointP point cursor = 
+cursorGotoFirstChildForPoint :: {- Call by value -} Point -> TreeCursor -> IO Int64
+cursorGotoFirstChildForPoint point cursor = 
     flip liftUnaryPointFunction point $ \pointPtr -> 
         flip liftUnaryTreeCursorFunction cursor $ \cursorPtr ->
             ts_tree_cursor_goto_first_child_for_point_p cursorPtr pointPtr
@@ -76,8 +77,14 @@ cursorReset node cursor =
         flip liftUnaryTreeCursorFunction cursor $ \cursorPtr ->
             ts_tree_cursor_reset_p cursorPtr nodePtr
 
-{- cursorNew :: {- Call by value -} Node -> IO TreeCursor
-cursorNew = _f ts_tree_cursor_new_pr -}
+cursorNew :: {- Call by value -} Node -> IO TreeCursor
+cursorNew node = do 
+    cursorPtr <- malloc_tree_cursor
+    _ <- liftUnaryNodeFunction (\nodePtr -> ts_tree_cursor_new_pr nodePtr cursorPtr) node
+    TreeCursor <$> newForeignPtr p_ts_tree_cursor_delete_and_free cursorPtr
+
+{- cursorCopy :: TreeCursor -> IO TreeCursor
+cursorCopy = _f ts_tree_cursor_copy_pr -}
 
 rootNodeWithOffset :: Tree -> Word32 -> {- Call by value -} Point -> IO Node
 rootNodeWithOffset tree x point = do
@@ -87,11 +94,8 @@ rootNodeWithOffset tree x point = do
             ts_tree_root_node_with_offset_pr treePtr x pointPtr nodePtr
     Node <$> newForeignPtr p_ts_free nodePtr
 
-{- cursorCopy :: TreeCursor -> IO TreeCursor
-cursorCopy = _f ts_tree_cursor_copy_pr -}
-
-cursorCurrentFieldId :: TreeCursor -> IO Field
-cursorCurrentFieldId cursor = FieldId <$> liftUnaryTreeCursorFunction ts_tree_cursor_current_field_id cursor
+cursorCurrentField :: TreeCursor -> IO Field
+cursorCurrentField cursor = FieldId <$> liftUnaryTreeCursorFunction ts_tree_cursor_current_field_id cursor
 
 cursorCurrentNode :: TreeCursor -> IO Node
 cursorCurrentNode cursor = do

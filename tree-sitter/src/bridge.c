@@ -218,6 +218,11 @@ void the_ts_free(void* ptr) {
   ts_free(ptr);
 }
 
+void ts_tree_cursor_delete_and_free(TSTreeCursor* cursor) {
+    ts_tree_cursor_delete(cursor);
+    ts_free(cursor);
+}
+
 TSNode* malloc_node() {
   return (TSNode*)ts_malloc(sizeof(TSNode));
 }
@@ -228,6 +233,10 @@ TSPoint* malloc_point() {
 
 TSRange* malloc_range() {
   return (TSRange*)ts_malloc(sizeof(TSRange));
+}
+
+TSTreeCursor* malloc_tree_cursor() {
+  return (TSTreeCursor*)ts_malloc(sizeof(TSTreeCursor));
 }
 
 TSPoint* new_point(uint32_t row, uint32_t column) {

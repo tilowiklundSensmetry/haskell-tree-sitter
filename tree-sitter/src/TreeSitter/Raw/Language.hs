@@ -1,7 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 module TreeSitter.Raw.Language
-( module TreeSitter.Symbol
-, ts_language_symbol_name
+( ts_language_symbol_name
 , ts_language_symbol_for_name
 , ts_language_field_count
 , ts_language_symbol_count
@@ -21,11 +20,10 @@ import           Foreign.Ptr
 -- import           Language.Haskell.TH.Syntax
 -- import           System.Directory
 -- import           System.FilePath.Posix
-import           TreeSitter.Symbol
-
-import TreeSitter.Raw.Types
 
 -- Plain
+
+import TreeSitter.Raw.Types
 
 foreign import ccall safe "ts_language_field_count" ts_language_field_count :: Ptr TSLanguage -> IO Word32
 foreign import ccall safe "ts_language_symbol_count" ts_language_symbol_count :: Ptr TSLanguage -> IO Word32

@@ -29,7 +29,7 @@ ts_query_pattern_count :: Ptr TSQuery -> IO Word32
 ts_query_start_byte_for_pattern :: Ptr TSQuery -> Word32 -> IO Word32
 ts_query_string_count :: Ptr TSQuery -> IO Word32
 ts_set_allocator :: ()Ptr  (Ptr  new_malloc)(size_t) -> ()Ptr  (Ptr  new_calloc)(size_t, size_t) -> ()Ptr  (Ptr  new_realloc)(()Ptr  , size_t) -> () (Ptr  new_free)(()Ptr  ) -> IO ()
-ts_tree_cursor_delete :: Ptr TSTreeCursor -> IO ()
+ts_tree_cursor_delete_and_free :: Ptr TSTreeCursor -> IO ()
 ts_tree_cursor_goto_first_child_for_byte :: Ptr TSTreeCursor -> Word32 -> IO Int64
 ts_tree_cursor_goto_first_child :: Ptr TSTreeCursor -> IO Bool
 ts_tree_cursor_goto_next_sibling :: Ptr TSTreeCursor -> IO Bool

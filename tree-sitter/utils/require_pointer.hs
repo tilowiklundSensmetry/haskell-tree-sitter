@@ -1,5 +1,5 @@
 p_ts_parser_delete :: FunPtr (Ptr TSParser -> IO ())
 p_ts_query_cursor_delete :: FunPtr (Ptr TSQueryCursor -> IO ())
 p_ts_query_delete :: FunPtr (Ptr TSQuery -> IO ())
-p_ts_tree_cursor_delete :: FunPtr (Ptr TSTreeCursor -> IO ())
+p_ts_tree_cursor_delete_and_free :: FunPtr (Ptr TSTreeCursor -> IO ())
 p_ts_tree_delete :: FunPtr (Ptr TSTree -> IO ())

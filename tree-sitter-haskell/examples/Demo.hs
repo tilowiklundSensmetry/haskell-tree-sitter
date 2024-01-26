@@ -8,6 +8,7 @@ import           TreeSitter.Haskell
 import           TreeSitter.Unsafe.Node
 
 import Data.Foldable
+import Control.Monad
 
 main :: IO ()
 main = do
@@ -28,6 +29,23 @@ main = do
                                   for_ sibling (dumpLayout prefix)
 
   dumpLayout "" root
+
+  putStrLn "......"
+
+  let dumpLayoutC prefix cursor = do
+                                  node <- cursorCurrentNode cursor
+                                  str <- string node
+                                  putStrLn $ prefix ++ str
+                                  hasChild <- cursorGotoFirstChild cursor
+                                  when hasChild $ do
+                                    dumpLayoutC (prefix ++ "  ") cursor
+                                  hasSibling <- cursorGotoNextSibling cursor
+                                  if hasSibling
+                                  then dumpLayoutC prefix cursor
+                                  else cursorGotoParent cursor >> return ()
+
+  rootCursor <- cursorNew =<< rootNode tree
+  dumpLayoutC "" rootCursor
 
 -- 
 --   children <- mallocArray childCount

@@ -4,7 +4,7 @@ module TreeSitter.Raw.Tree
 --, withRootNode
 , ts_tree_delete
 , p_ts_tree_delete
-, ts_tree_cursor_delete
+, ts_tree_cursor_delete_and_free
 , ts_tree_cursor_goto_first_child_for_byte
 , ts_tree_cursor_goto_first_child
 , ts_tree_cursor_goto_next_sibling
@@ -19,7 +19,7 @@ module TreeSitter.Raw.Tree
 , ts_tree_cursor_current_field_id
 , ts_tree_cursor_current_node_r
 , ts_tree_root_node_pr
-, p_ts_tree_cursor_delete
+, p_ts_tree_cursor_delete_and_free
 ) where
 
 import Foreign
@@ -29,7 +29,7 @@ import TreeSitter.Raw.Types
 
 -- Plain
 
-foreign import ccall safe "ts_tree_cursor_delete" ts_tree_cursor_delete :: Ptr TSTreeCursor -> IO ()
+foreign import ccall safe "ts_tree_cursor_delete_and_free" ts_tree_cursor_delete_and_free :: Ptr TSTreeCursor -> IO ()
 foreign import ccall safe "ts_tree_cursor_goto_first_child_for_byte" ts_tree_cursor_goto_first_child_for_byte :: Ptr TSTreeCursor -> Word32 -> IO Int64
 foreign import ccall safe "ts_tree_cursor_goto_first_child" ts_tree_cursor_goto_first_child :: Ptr TSTreeCursor -> IO Bool
 foreign import ccall safe "ts_tree_cursor_goto_next_sibling" ts_tree_cursor_goto_next_sibling :: Ptr TSTreeCursor -> IO Bool
@@ -57,5 +57,5 @@ foreign import ccall safe "ts_tree_root_node_pr" ts_tree_root_node_pr :: Ptr TST
 
 -- Function pointers
 
-foreign import ccall safe "&ts_tree_cursor_delete" p_ts_tree_cursor_delete :: FunPtr (Ptr TSTreeCursor -> IO ())
+foreign import ccall safe "&ts_tree_cursor_delete_and_free" p_ts_tree_cursor_delete_and_free :: FunPtr (Ptr TSTreeCursor -> IO ())
 foreign import ccall safe "&ts_tree_delete" p_ts_tree_delete :: FunPtr (Ptr TSTree -> IO ())

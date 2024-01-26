@@ -18,6 +18,7 @@ module TreeSitter.Raw.Types (
 , malloc_node
 , malloc_point
 , malloc_range
+, malloc_tree_cursor
 , new_range
 , new_point
 ) where
@@ -44,6 +45,7 @@ type TSSymbol = Word16
 foreign import ccall safe "malloc_node" malloc_node :: IO (Ptr TSNode)
 foreign import ccall safe "malloc_point" malloc_point :: IO (Ptr TSPoint)
 foreign import ccall safe "malloc_range" malloc_range :: IO (Ptr TSRange)
+foreign import ccall safe "malloc_tree_cursor" malloc_tree_cursor :: IO (Ptr TSTreeCursor)
 
 foreign import ccall safe "new_range" new_range :: Ptr TSPoint -> Ptr TSPoint -> Word32 -> Word32 -> Ptr TSRange
 foreign import ccall safe "new_point" new_point :: Word32 -> Word32 -> Ptr TSPoint
