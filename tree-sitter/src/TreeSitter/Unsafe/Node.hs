@@ -39,16 +39,15 @@ import Foreign
 import Foreign.C
 --import Foreign.ForeignPtr
 
-import TreeSitter.Symbol
-
 import TreeSitter.Raw.Types
 import TreeSitter.Raw.Allocation
 import TreeSitter.Raw.Node
-import TreeSitter.Internal.Node
+
+import TreeSitter.Internal.Types
+
 -- import TreeSitter.Raw.Node
 
 newtype Point = Point (ForeignPtr TSPoint)
-newtype FieldId = FieldId TSFieldId
 
 liftUnaryNodeFunctionP :: (Ptr TSNode -> Ptr TSNode -> IO a) -> Node -> IO (Maybe Node)
 liftUnaryNodeFunctionP op (Node nodeForeignPtr) = do

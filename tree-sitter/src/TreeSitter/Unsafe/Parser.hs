@@ -1,12 +1,10 @@
 module TreeSitter.Unsafe.Parser (parserNew, parseString, setLanguage) where
 
-import TreeSitter.Internal.Parser
+import TreeSitter.Internal.Types
+
 import TreeSitter.Raw.Parser
 
-import TreeSitter.Internal.Tree
 import TreeSitter.Raw.Tree
-
-import TreeSitter.Internal.Language
 
 import Foreign
 import Foreign.C.String

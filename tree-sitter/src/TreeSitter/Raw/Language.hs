@@ -7,8 +7,7 @@ module TreeSitter.Raw.Language
 , ts_language_symbol_count
 , ts_language_version
 , ts_language_symbol_type
-, ts_language_field_id_for_name_pr
-, ts_language_symbol_for_name_pr
+, ts_language_field_id_for_name
 ) where
 
 -- import           Data.Ix (Ix)
@@ -26,23 +25,19 @@ import           TreeSitter.Symbol
 
 import TreeSitter.Raw.Types
 
-foreign import ccall safe "ts_language_symbol_name" ts_language_symbol_name :: Ptr TSLanguage -> TSSymbol -> IO CString
-foreign import ccall safe "ts_language_symbol_for_name" ts_language_symbol_for_name :: Ptr TSLanguage -> CString -> Int -> Bool -> IO TSSymbol
-
 -- Plain
 
 foreign import ccall safe "ts_language_field_count" ts_language_field_count :: Ptr TSLanguage -> IO Word32
 foreign import ccall safe "ts_language_symbol_count" ts_language_symbol_count :: Ptr TSLanguage -> IO Word32
 foreign import ccall safe "ts_language_version" ts_language_version :: Ptr TSLanguage -> IO Word32
+foreign import ccall safe "ts_language_symbol_name" ts_language_symbol_name :: Ptr TSLanguage -> TSSymbol -> IO CString
+foreign import ccall safe "ts_language_field_id_for_name" ts_language_field_id_for_name :: Ptr TSLanguage -> CString -> Word32 -> IO TSFieldId
+foreign import ccall safe "ts_language_symbol_for_name" ts_language_symbol_for_name :: Ptr TSLanguage -> CString -> Word32 -> Bool -> IO TSSymbol
 
 -- Call by value and return by value wrap
 
 foreign import ccall safe "ts_language_symbol_type" ts_language_symbol_type :: Ptr TSLanguage -> TSSymbol -> IO TSSymbolType
 
--- Return by value wrap
-
-foreign import ccall safe "ts_language_field_id_for_name_pr" ts_language_field_id_for_name_pr :: Ptr TSLanguage -> CString -> Word32 -> {- Out -} Ptr TSFieldId -> IO ()
-foreign import ccall safe "ts_language_symbol_for_name_pr" ts_language_symbol_for_name_pr :: Ptr TSLanguage -> CString -> Word32 -> Bool -> {- Out -} Ptr TSSymbol -> IO ()
 
 {-
 -- | TemplateHaskell construction of a datatype for the referenced Language.

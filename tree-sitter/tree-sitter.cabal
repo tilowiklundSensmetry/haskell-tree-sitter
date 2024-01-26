@@ -75,6 +75,7 @@ library
                      , TreeSitter.Internal.Parser
                      , TreeSitter.Internal.Query
                      , TreeSitter.Internal.Tree
+                     , TreeSitter.Internal.Types
                      , TreeSitter.Unsafe.Language
                      , TreeSitter.Unsafe.Node
                      , TreeSitter.Unsafe.Parser

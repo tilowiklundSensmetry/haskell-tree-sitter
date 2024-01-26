@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveLift, LambdaCase, ScopedTypeVariables #-}
 
-module TreeSitter.Symbol
-  ( TSSymbol
+module TreeSitter.Symbol () where
+{-  ( TSSymbol
   , fromTSSymbol
   , SymbolType(..)
   , Symbol(..)
@@ -131,3 +131,4 @@ camelCase = go
 capitalize :: String -> String
 capitalize (c:cs) = toUpper c : cs
 capitalize []     = []
+ -}

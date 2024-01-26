@@ -14,6 +14,7 @@ module TreeSitter.Raw.Types (
 , TSTree
 , TSLogger
 , TSQuantifier
+, TSSymbol
 , malloc_node
 , malloc_point
 , malloc_range
@@ -38,6 +39,7 @@ data TSQueryMatch
 data TSTree
 data TSLogger
 data TSQuantifier
+type TSSymbol = Word16
 
 foreign import ccall safe "malloc_node" malloc_node :: IO (Ptr TSNode)
 foreign import ccall safe "malloc_point" malloc_point :: IO (Ptr TSPoint)
